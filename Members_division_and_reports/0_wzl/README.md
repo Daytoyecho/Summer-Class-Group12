@@ -1,12 +1,14 @@
 ## WZL ——整个项目中负责的板块以及完成情况
 
 - [x] 设计漏洞一：任意文件读取
+
   - [x] 漏洞设计
   - [x] Check 设计
   - [x] Exp 设计
   - [x] FixIt
 
 - [x] 攻击漏洞三（组员之间相互 break ）：后台 sql 注入
+
   - [x] 漏洞分析
   - [x] Exp 构造
 
@@ -46,17 +48,17 @@
 sudo dpkg -i code_1.58.2-1626302803_amd64.deb
 ```
 
-在左上角查找 `VScode`  并启动，安装相应的插件包
+在左上角查找 `VScode` 并启动，安装相应的插件包
 
 ## 实验步骤
 
 ### 一、在系统中对前台任意文件读取漏洞的 `build` 、 `exp`设计、 `check` 设计和 `fix` 。
 
-1. ####  `BuidIt` ——漏洞一
+1. #### `BuidIt` ——漏洞一
 
    **前台任意文件读取漏洞(在系统的三个漏洞中编号为漏洞一)—本项目基于开源项目 `pbootcms`  2.0.7 进行漏洞设计，对过往版本进行了学习参考**。
 
-   在 Docker 启动时添加命令 `RUN echo "flag{fffllllaaggggg}" > /flag`。
+   在 Docker 启动时添加命令 `RUN echo "flag{fffllllaaggggg}" > /flag` 。
 
    漏洞设计在 `core\view\view.php` 中的 `parser` 函数
 
@@ -127,7 +129,7 @@ sudo dpkg -i code_1.58.2-1626302803_amd64.deb
 
    当模板文件不在缓存中的时候，会读取 `$tpl_file` 中的内容，然后写入缓存文件中并且包含。也就是说，当 `parser` 函数的参数可以被控制的时候，就会造成一个任意文件包含。因此，我们**要找一个可控参数的 `parser` 调用。**
 
-   在 `apps\home\controller\SearchController.php` 中存在 `parser` ,并且`searchtpl` 可控。
+   在 `apps\home\controller\SearchController.php` 中存在 `parser` ,并且 `searchtpl` 可控。
 
    ![find_parser_106](../img/find_parser_106.png)
 
@@ -149,7 +151,7 @@ sudo dpkg -i code_1.58.2-1626302803_amd64.deb
 
    发现可以在此进行漏洞利用。
 
-3. ####  `Exp` 设计
+3. #### `Exp` 设计
 
    根据漏洞一，进⾏ `Exp` 设计，利⽤ `request` 库直接发送数据即可拿到 `flag` 。
 
@@ -165,7 +167,7 @@ sudo dpkg -i code_1.58.2-1626302803_amd64.deb
    
    ![bug_1_build_exp_125](../img/bug_1_build_exp_125.png)
    
-3. ####  `Check` 设计
+3. #### `Check` 设计
 
    `check` 的主要原则是模拟用户正常使用漏洞点的地方。对漏洞一的 `check` 主要模拟用户搜索过程。
 
@@ -179,7 +181,7 @@ sudo dpkg -i code_1.58.2-1626302803_amd64.deb
 
      ![find_nothing_112](../img/find_nothing_112.png)
 
-   - 所以 `check`  的思路为：基于系统中已经预先置入的一些数据，进行搜索关键词的设置。
+   - 所以 `check` 的思路为：基于系统中已经预先置入的一些数据，进行搜索关键词的设置。
 
      1. 设定两个系统中可以搜索到的关键词和一个不能搜索到的关键词：
 
@@ -250,7 +252,7 @@ sudo dpkg -i code_1.58.2-1626302803_amd64.deb
         
         ![check_up_1_117](../img/check_up_1_117.png)
 
-5. ####  `FixIt`
+5. #### `FixIt`
 
     - Before Fix — `awdBreak` 文件夹下
 
@@ -278,13 +280,13 @@ sudo dpkg -i code_1.58.2-1626302803_amd64.deb
     
     ![after_fix_bug1_exp_126](../img/after_fix_bug1_exp_126.png)
 
-### 二、`BreakIt` ——漏洞三-后台 `sql` 注入漏洞（与小组成员交换漏洞）——做题人视角解题
+### 二、 `BreakIt` ——漏洞三-后台 `sql` 注入漏洞（与小组成员交换漏洞）——做题人视角解题
 
 **整体破解思路分析**：
 
 - 由于是后台 RCE ，需要先拿到账号密码登录
 
-- 漏洞在新增内容处，参考[PbootCMS SQL Injection](https://github.com/wowwooo/vnotes/blob/master/PbootCMS%20SQL%20Injection%20Description.md)进行注入测试，首先尝试一下爆数据库名，发现成功。
+- 漏洞在新增内容处，参考 [PbootCMS SQL Injection](https://github.com/wowwooo/vnotes/blob/master/PbootCMS%20SQL%20Injection%20Description.md) 进行注入测试，首先尝试一下爆数据库名，发现成功。
 
   ```mysql
   1' AND (SELECT * FROM(SELECT COUNT(*),CONCAT(database(),FLOOR(RAND(0)*2))x FROM INFORMATION_SCHEMA.TABLES GROUP BY x)a) AND 'a'='a
@@ -296,7 +298,7 @@ sudo dpkg -i code_1.58.2-1626302803_amd64.deb
 
 一、破解账号和密码
 
-根据提示——题目线索：检查一下 MTJAYWE0Li8oOUViOUFEKTApNw== 看看能发现什么吧~
+根据提示——题目线索：检查一下 `MTJAYWE0Li8oOUViOUFEKTApNw==` 看看能发现什么吧~
 
 - 看到熟悉的 `=` ，肯定和 `base64` 加密有关，推测用户名为 `check` , `MTJAYWE0Li8oOUViOUFEKTApNw==` 是由原始密码经过 `base64` 加密变换后得到的密文。
 - 经过尝试，发现使用 `base64` 解密，得到 `12@aa4./(9Eb9AD)0)7` ，看起来很像密码，在网站试一下果然是正确的。
@@ -419,7 +421,7 @@ if __name__ == '__main__':
 
 ![bug3_break_exp_121](../img/bug3_break_exp_121.png)
 
-#### 同理，在漏洞修复后的docker中测试 exp 脚本，发现漏洞利用失效，证明漏洞修复成功：
+#### 同理，在漏洞修复后的 docker中测试 exp 脚本，发现漏洞利用失效，证明漏洞修复成功：
 
 ![after_fix_bug3_run_124](../img/after_fix_bug3_run_124.png)
 
@@ -427,15 +429,15 @@ if __name__ == '__main__':
 
 1. 解决 `Vscode` 下载慢的问题
 
-   以我的下载链接 `https://az764295.vo.msecnd.net/stable/c3f126316369cd610563c75b1b1725e0679adfb3/code_1.58.2-1626302803_amd64.deb` 为例，把 `/stable`前面的 `az764295.vo.msecnd.net` 换成 `vscode.cdn.azure.cn`
+   以我的下载链接 `https://az764295.vo.msecnd.net/stable/c3f126316369cd610563c75b1b1725e0679adfb3/code_1.58.2-1626302803_amd64.deb` 为例，把 `/stable` 前面的 `az764295.vo.msecnd.net` 换成 `vscode.cdn.azure.cn`
 
 2. 连接服务器失败
 
    ![3](../img/run_102.png)
 
-   **原因：**有一些奇怪的 `bug` ，中间不能执行 `sudo docker-compose stop` ，否则就出问题。
+   **原因** ：有一些奇怪的 `bug` ，中间不能执行 `sudo docker-compose stop` ，否则就出问题。
 
-   **解决办法：**完全删掉镜像，重新执行命令即可。[参考链接](https://blog.csdn.net/footbridge/article/details/123053052)
+   **解决办法** ：完全删掉镜像，重新执行命令即可。[参考链接](https://blog.csdn.net/footbridge/article/details/123053052)
 
    ```
    ##查看全部镜像

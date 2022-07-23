@@ -1,30 +1,37 @@
-
-
 # 创新实践能力团队赛总结技术报告——张雨琦
 
 ## 实验环境
 
 - 基础环境
+
   - OS：macOS Monterey 12.4
   - Apple M1
+
 - 项目运行环境
+
   - Docker Desktop for Mac 4.3.2
+
     - Compose/1.29.2 
+
+
 - 脚本开发及运行环境
+
   - Python/3.9.7 
   - Visual Studio Code/1.69.0
 
 ## 实验任务
 
 - [x] 设计漏洞二：前台 RCE
+
   - [x] 漏洞设计
   - [x] Check 设计
   - [x] Exp 设计
   - [x] FixIt
 
-- [x] 攻击漏洞一（组员之间相互 break）：前台任意文件读取
+- [x] 攻击漏洞一：前台任意文件读取
+
   - [x] 漏洞分析
-  - [x] Exp 构造
+  - [x] Exp 设计
 
 ## 实验过程
 
@@ -42,7 +49,7 @@
 
 ![the_first_filter_206](../img/the_first_filter_206.jpg)
 
-第一个过滤，「str_replace() 函数」将变量 `field_data` 中的 「pboot:if 标签」 过滤，可以用 **双写绕过** 解决。
+发现存在第一个过滤，「str_replace() 函数」将变量 `field_data` 中的 「pboot:if 标签」 过滤，可以用 **双写绕过** 解决。
 
 在 `apps\home\controller\ParserController.php` 中「parserIfLabel() 函数」的功能为「解析 if 条件标签」。提交的内容起初为变量 `matches[0]` ，后面将「pboot:if 标签」中的 payload 值赋给 `matches[1]` ，过滤后提取出左括号前的字符串。
 
@@ -164,7 +171,7 @@ preg_match_all('/([\w]+)([\\\s]+)?\(/i', $matches[1][$i], $matches2)
 
 即执行命令`system("cat flag.php");`
 
-**提供给解题人的线索为： pbootpbootpboot:if:if:if  **
+**提供给解题人的线索为：pbootpbootpboot:if:if:if**
 
 ![bug2_build_213](../img/bug2_build_213.jpg)
 
@@ -394,7 +401,7 @@ if (preg_match('/(\$_GET\[)|(\$_POST\[)|(\$_REQUEST\[)|(\$_COOKIE\[)|(\$_SESSION
 
 > **/etc/passwd**：Linux 系统保存用户信息及其工作目录的文件，权限是可读。
 
-参考 [过往版本漏洞](https://xz.aliyun.com/t/7744#toc-0) ，此类漏洞大多存在 `../` 和 `\`  的过滤现象，可利用 **双写绕过** 解决，并尝试利用相对路径 `../etc/passwd` 破解。
+参考 [过往版本漏洞](https://xz.aliyun.com/t/7744#toc-0)，此类漏洞大多存在 `../` 和 `\` 的过滤现象，可利用 **双写绕过** 解决，并尝试利用相对路径 `../etc/passwd` 破解。
 
 以「PbootCMS」为模版的网站为实现搜索功能常使用「search」等标签，在 [PbootCMS英文站搜索结果页面包屑和标题翻译](https://www.srso.cn/seo/770.htm) 等在线文档中曾多次出现了「searchtpl」等属性名。
 
@@ -412,7 +419,7 @@ if (preg_match('/(\$_GET\[)|(\$_POST\[)|(\$_REQUEST\[)|(\$_COOKIE\[)|(\$_SESSION
 
 ##### Exp 设计
 
-利用「request 库」即可得到  flag
+利用「request 库」即可得到 flag
 
 ```python
 import requests
@@ -469,11 +476,9 @@ if (preg_match_all('/([\w]+)([\\\s]+)?\(/i', $matches[1][$i], $matches2)) {
 
 - [MacOS Docker 安装](https://www.runoob.com/docker/macos-docker-install.html)
 - [Overview of docker compose CLI](https://docs.docker.com/compose/reference/)
-
 - [渗透测试 - 黑客技术 | 从 *Pboot* CMS 审计到某狗绕过_吾爱漏洞](http://www.52bug.cn/hkjs/6720.html)
 - [PHP 动态特性的捕捉与逃逸](https://www.leavesongs.com/PENETRATION/dynamic-features-and-webshell-tricks-in-php.html)
 - [PHP preg_replace() 函数](https://www.runoob.com/php/php-preg_replace.html)
-
 - [从 0 到 1 CTFer 成功之路 任意文件读取漏洞---学习笔记](https://blog.csdn.net/aweiname2008/article/details/119522187?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-1-119522187-blog-118574158.pc_relevant_multi_platform_whitelistv1&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-1-119522187-blog-118574158.pc_relevant_multi_platform_whitelistv1&utm_relevant_index=1)
 - [CTF 中文件读取漏洞常见读取路径](http://t.zoukankan.com/4sh3s-p-15551544.html)
 - [PHP 教程](https://www.runoob.com/php/php-tutorial.html)
