@@ -1,6 +1,6 @@
 # FixIt ——对应 awdFix 文件夹，是 Fix 之后的 docker
 
-**Fix 之后，三个漏洞的漏洞利用都失效， check 仍能成功。详见[视频](https://www.bilibili.com/video/BV1ya411M7c1/)。具体 Fix 方法如下**
+**Fix 之后，三个漏洞的漏洞利用都失效，check 仍能成功。详见 [视频](https://www.bilibili.com/video/BV1ya411M7c1/) 。具体 Fix 方法如下**
 
 ## 漏洞一
 
