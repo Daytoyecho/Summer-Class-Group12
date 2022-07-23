@@ -1,0 +1,7 @@
+version: '3'
+services:
+  pbtcms-awd:
+    build: ./php-fpm
+    restart: always
+    ports:
+        - 80:80
