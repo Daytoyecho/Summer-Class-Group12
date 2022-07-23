@@ -173,10 +173,6 @@ preg_match_all('/([\w]+)([\\\s]+)?\(/i', $matches[1][$i], $matches2)
 
 **提供给解题人的线索为：pbootpbootpboot:if:if:if**
 
-![bug2_build_213](../img/bug2_build_213.jpg)
-
-![bug2_build_214](../img/bug2_build_214.jpg)
-
 ##### Check 设计
 
 > 对漏洞二的检查主要是针对用户留言模块进行模拟提交留言，并检查留言是否成功。
