@@ -1,6 +1,6 @@
 # BuildIt
 
-*注：本项目基于开源项目 `pbootcms`  2.0.7 进行漏洞设计，对过往版本进行了学习参考*
+*注：本项目基于开源项目 `pbootcms`  2.0.7 进行漏洞设计，并且对过往版本进行了学习参考*
 
 ## （一）漏洞设计
 
@@ -18,7 +18,7 @@
 
 也就是说，当 `parser` 函数的参数可以被控制的时候，就会造成一个任意文件包含。因此，我们**要找一个可控参数的 `parser` 调用。**
 
-在 `apps\home\controller\SearchController.php` 中存在 `parser` ,并且`searchtpl` 可控。
+在 `apps\home\controller\SearchController.php` 中存在 `parser` ,并且 `searchtpl` 可控。
 
 ![find_parser_106](img/find_parser_106.png)
 
@@ -42,7 +42,7 @@
 
 ### 2.漏洞二 —— 前台 RCE
 
-在留言板处可以 **通过控制留言内容实现代码执行 **。 
+在留言板处可以 **通过控制留言内容实现代码执行**。 
 
 修改 `apps\api\controller\CmsController.php` 中的「addmsg 函数」：
 
@@ -200,7 +200,61 @@ $description = mb_substr(strip_tags($_POST['content']), 0, 150);
 testPOC' or (select extractvalue(1,concat(0x7e,(select group_concat(flag,0x7e) from pbootcms.ay_aFlag)))) or ' 
 ```
 
-因为漏洞设计在后台，所以要过登录。对数据库（包含用户名密码）的设计如下， `password` 是由原始密码经过**两次 `MD5` 加密**得到的，[**脚本为—后面放链接**]
+因为漏洞设计在后台，所以要过登录。对数据库（包含用户名密码）的设计如下， `password` 是由原始密码经过**两次 `MD5` 加密**得到的：
+
+```python
+import random
+import string
+
+def generate_random_password(count, length):
+    # string.ascii_letters 大小写字母， string.digits 为数字
+    characters_long = list(string.ascii_letters + string.digits + "!@#$%^&*()")
+
+    # 打乱字符串序列
+    random.shuffle(characters_long)
+
+    # 生成密码个数
+    for i in range(int(count)):
+        # picking random characters from the list
+        password = []
+        # 生成密码个数
+        for b in range(length):
+            password.append(random.choice(characters_long))
+
+        # 打乱密码顺序
+        random.shuffle(password)
+
+        # 将列表转换为字符串并打印
+        print("".join(password))
+
+
+def main():
+    length = int(input("请输入密码长度: "))
+    count = int(input("请输入密码生成个数: "))
+    generate_random_password(count, length)
+
+
+if __name__ == '__main__':
+    # 由于MD5模块在python3中被移除
+    # 在python3中使用hashlib模块进行md5操作
+
+    import hashlib
+
+    # 待加密信息
+    str = '12@aa4./(9Eb9AD)0)7'
+    str='5c94a401cb982b435f603765b6cb5306'
+
+    # 创建md5对象
+    hl = hashlib.md5()
+
+    # Tips
+    # 此处必须声明encode
+    # 若写法为hl.update(str)  报错为： Unicode-objects must be encoded before hashing
+    hl.update(str.encode(encoding='utf-8'))
+
+    print('MD5加密前为 ：' + str)
+    print('MD5加密后为 ：' + hl.hexdigest())
+```
 
 ![MD5_416](img/MD5_416.png)
 
@@ -208,7 +262,7 @@ testPOC' or (select extractvalue(1,concat(0x7e,(select group_concat(flag,0x7e) f
 
 提供给解题人的**题目线索为：检查一下 MTJAYWE0Li8oOUViOUFEKTApNw== 看看能发现什么吧~**
 
-*线索破解出来得到用户名为 `check` , 将 `check` 用户原密码 `12@aa4./(9Eb9AD)0)7` 进行 base64 加密得到 `MTJAYWE0Li8oOUViOUFEKTApNw==`*
+*线索破解出来得到用户名为 `check` , 将 `check` 用户原密码 `12@aa4./(9Eb9AD)0)7` 进行 base64 加密得到  `MTJAYWE0Li8oOUViOUFEKTApNw==`*
 
 ## （二）Exp 设计— Build 阶段的 exp
 
@@ -447,29 +501,29 @@ Check 的主要原则也是模拟用户正常使用漏洞点的地方。
                  return False
      ```
 
-  3. 主函数如下：
+  主函数如下：
 
-      ```python
-      import requests
-      from bs4 import BeautifulSoup
-      if __name__ == '__main__':
-          keywords = {
-              "PHP":1,
-              "服务":1,
-              "lalalaallalala":0 
-          }
-          
-          for i in keywords:
-              if(GetSearchState(i,keywords[i])==False):
-                  flag=0
-                  break
-              else:
-                  flag=1
-          if(flag==0):
-              print("Check Down")
+  ```python
+  import requests
+  from bs4 import BeautifulSoup
+  if __name__ == '__main__':
+      keywords = {
+          "PHP":1,
+          "服务":1,
+          "lalalaallalala":0 
+      }
+      
+      for i in keywords:
+          if(GetSearchState(i,keywords[i])==False):
+              flag=0
+              break
           else:
-              print("Check Up")
-      ```
+              flag=1
+      if(flag==0):
+          print("Check Down")
+      else:
+          print("Check Up")
+  ```
 
 ![check_up_1_117](img/check_up_1_117.png)
 
@@ -642,18 +696,18 @@ check2.py 的执行情况如下
            return "err"
    ```
 
-5. 主函数
+主函数
 
-   ```python
-   if __name__ == '__main__':
-       mkey=makeKey()
-       if senExp(mkey)==200:
-           if mkey==getKey():
-               print("Check Up")
-           else:
-               print("Check Down")
-       else:
-           print("Check Down")
-   ```
+```python
+if __name__ == '__main__':
+    mkey=makeKey()
+    if senExp(mkey)==200:
+        if mkey==getKey():
+            print("Check Up")
+        else:
+            print("Check Down")
+    else:
+        print("Check Down")
+```
 
 ![bug3_checkup_422](img/bug3_checkup_422.png)
