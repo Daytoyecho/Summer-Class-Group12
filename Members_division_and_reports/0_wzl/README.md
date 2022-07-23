@@ -226,30 +226,30 @@ sudo dpkg -i code_1.58.2-1626302803_amd64.deb
                     return False
         ```
 
-     3. 主函数如下：
+     主函数如下：
 
-        ```python
-        import requests
-        from bs4 import BeautifulSoup
-        if __name__ == '__main__':
-            keywords = {
-                "PHP":1,
-                "服务":1,
-                "lalalaallalala":0 
-            }
-            
-            for i in keywords:
-                if(GetSearchState(i,keywords[i])==False):
-                    flag=0
-                    break
-                else:
-                    flag=1
-            if(flag==0):
-                print("Check Down")
-            else:
-                print("Check Up")
-        ```
-        
+     ```python
+     import requests
+     from bs4 import BeautifulSoup
+     if __name__ == '__main__':
+         keywords = {
+             "PHP":1,
+             "服务":1,
+             "lalalaallalala":0 
+         }
+         
+         for i in keywords:
+             if(GetSearchState(i,keywords[i])==False):
+                 flag=0
+                 break
+             else:
+                 flag=1
+         if(flag==0):
+             print("Check Down")
+         else:
+             print("Check Up")
+     ```
+     
         ![check_up_1_117](../img/check_up_1_117.png)
 
 5. #### `FixIt`
