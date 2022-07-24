@@ -8,7 +8,7 @@
 
 参考 [过往版本漏洞](https://xz.aliyun.com/t/7744#toc-0) ，此类漏洞大多存在 `../` 和 `\`  的过滤现象，可利用 **双写绕过** 解决。
 
-以「PbootCMS」为模版的网站为实现搜索功能常使用「search」等标签，在 [PbootCMS英文站搜索结果页面包屑和标题翻译](https://www.srso.cn/seo/770.htm) 等在线文档中曾多次出现了「searchtpl」等属性名。
+以「PbootCMS」为模版的网站为实现搜索功能常使用「search」等标签，在 [PbootCMS英文站搜索结果页面包屑和标题翻译](https://www.srso.cn/seo/770.htm) 等在线文档中发现「searchtpl」属性名。
 
 综合以上，反复多次试验找出了根目录
 
@@ -112,7 +112,9 @@ if __name__ == '__main__':
            catchFlag()
    ```
 
-   成功拿到 `flag{flaggg}`![image-20220723021836465](img/Break2_catchFlag_308.png)
+   成功拿到 `flag{flaggg}`
+   
+   ![image-20220723021836465](img/Break2_catchFlag_308.png)
 
 ## 漏洞三
 
