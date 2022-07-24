@@ -419,6 +419,8 @@ if __name__ == '__main__':
 
 执行脚本拿到 flag：
 
+![break_bug3_130](../img/break_bug3_130.png)
+
 ![bug3_break_exp_121](../img/bug3_break_exp_121.png)
 
 #### 同理，在漏洞修复后的 docker中测试 exp 脚本，发现漏洞利用失效，证明漏洞修复成功：
