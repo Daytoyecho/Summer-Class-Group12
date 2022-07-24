@@ -1,11 +1,11 @@
-# 陈鸣宇—2019302120126—19信安2班
+# 创新实践能力团队赛总结技术报告——陈鸣宇
 
-## 1.完成任务情况
+## 完成任务情况
 
 - [x] 场景设计开发；
 - [x] 漏洞3 build、exp设计、check 设计、以及fix。
 
-## 2.实验环境
+## 实验环境
 
 本次实验开发环境和实际项⽬运⾏环境以及 Exp 脚本和 Check 脚本运⾏环境，均基于如下基础环境：
 
@@ -39,7 +39,7 @@
 - Visual Studio Code 1.69.2 
   
 
-## 3.场景设计开发
+## 场景设计开发
 
 ### 功能实现
 
@@ -393,7 +393,7 @@ http://127.0.0.1/admin.php?p=/Index/login
 
 以上就是整个网站模板的配置使用了，接着就可以在文件中修改源代码来修改功能了。
 
-## 4.漏洞三 —— 后台 sql 注入
+## 漏洞三 —— 后台 sql 注入
 
 ### 漏洞设计（ BuildIt ）
 
@@ -821,12 +821,12 @@ Check 的主要原则是模拟用户正常使用漏洞点的地方。
 
 ## 参考链接
 
-1. [PbootCMS 开发手册](https://www.pbootcms.com/docs/218.html)
-2. [从PbootCMS审计到某狗绕过](https://www.freebuf.com/articles/web/253403.html)
-3. [PHPCMS漏洞分析合集](https://xz.aliyun.com/t/5730)
-4. [CMS漏洞复现](http://www.bmth666.cn/bmth_blog/2021/07/04/CMS%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/#PbootCMS)
-5. [sql注入中报错注入函数extractvalue和updatexml函数的原理及使用](https://blog.csdn.net/weixin_46145442/article/details/110254238)
+- [PbootCMS 开发手册](https://www.pbootcms.com/docs/218.html)
+- [从PbootCMS审计到某狗绕过](https://www.freebuf.com/articles/web/253403.html)
+- [PHPCMS漏洞分析合集](https://xz.aliyun.com/t/5730)
+- [CMS漏洞复现](http://www.bmth666.cn/bmth_blog/2021/07/04/CMS%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/#PbootCMS)
+- [sql注入中报错注入函数extractvalue和updatexml函数的原理及使用](https://blog.csdn.net/weixin_46145442/article/details/110254238)
 
-6. [kali下对Docker的详细安装_涂寐的博客-CSDN博客_](https://blog.csdn.net/weixin_46318141/article/details/121168812)
+- [kali下对Docker的详细安装_涂寐的博客-CSDN博客_](https://blog.csdn.net/weixin_46318141/article/details/121168812)
 
-7. [VC9 32位_phpstudy集成安装环境运行库-php中文网工具下载](https://www.php.cn/xiazai/gongju/1479#elYxjsBoxId)
+- [VC9 32位_phpstudy集成安装环境运行库-php中文网工具下载](https://www.php.cn/xiazai/gongju/1479#elYxjsBoxId)
