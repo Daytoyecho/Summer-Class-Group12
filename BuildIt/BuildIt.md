@@ -16,7 +16,7 @@
 
 当模板文件不在缓存中的时候，会读取 `$tpl_file` 中的内容，然后写入缓存文件中并且包含。
 
-也就是说，当 `parser` 函数的参数可以被控制的时候，就会造成一个任意文件包含。因此，我们**要找一个可控参数的 `parser` 调用。**
+也就是说，当 `parser` 函数的参数可以被控制的时候，就会造成一个任意文件包含。因此，我们 **要找一个可控参数的 `parser` 调用。**
 
 在 `apps\home\controller\SearchController.php` 中存在 `parser` ,并且 `searchtpl` 可控。
 
@@ -174,7 +174,7 @@ preg_match_all('/([\w]+)([\\\s]+)?\(/i', $matches[1][$i], $matches2)
 
 ![sql_flag_414](img/sql_flag_414.png)
 
-由于对  `$content`  过滤不严格导致**可在后台新增文章处进行 `SQL` 注入**：
+由于对  `$content`  过滤不严格导致 **可在后台新增文章处进行 `SQL` 注入**：
 
 漏洞在 `\apps\admin\controller\content\ContentController.php` 中的 79-170 行（只截取重要部分）
 
@@ -188,7 +188,7 @@ $description = mb_substr(strip_tags($_POST['content']), 0, 150);
 
 仅对传入的  `content`  参数使用了 `strip_tags` 和 `mb_substr` 过滤，因此 `$content` 存在 `SQL` 注入。
 
-**报错注入**可以拿到数据库中的flag：
+**报错注入** 可以拿到数据库中的flag：
 
 > 如果使用 select (extractvalue(1,(database()))); 在 1 中查询不到 database() 的结果，但是因为没有语法错误，所以不会报错。
 >
@@ -200,7 +200,7 @@ $description = mb_substr(strip_tags($_POST['content']), 0, 150);
 testPOC' or (select extractvalue(1,concat(0x7e,(select group_concat(flag,0x7e) from pbootcms.ay_aFlag)))) or ' 
 ```
 
-因为漏洞设计在后台，所以要过登录。对数据库（包含用户名密码）的设计如下， `password` 是由原始密码经过**两次 `MD5` 加密**得到的：
+因为漏洞设计在后台，所以要过登录。对数据库（包含用户名密码）的设计如下， `password` 是由原始密码经过 **两次 `MD5` 加密** 得到的：
 
 ```python
 import random
@@ -260,7 +260,7 @@ if __name__ == '__main__':
 
 考虑到目前情况下无法通过爆破或者注入方法拿到用户名和密码，即便拿到了也无法解密出原密码，所以：
 
-提供给解题人的**题目线索为：检查一下 MTJAYWE0Li8oOUViOUFEKTApNw== 看看能发现什么吧~**
+提供给解题人的 **题目线索为：检查一下 MTJAYWE0Li8oOUViOUFEKTApNw== 看看能发现什么吧~**
 
 *线索破解出来得到用户名为 `check` , 将 `check` 用户原密码 `12@aa4./(9Eb9AD)0)7` 进行 base64 加密得到  `MTJAYWE0Li8oOUViOUFEKTApNw==`*
 
