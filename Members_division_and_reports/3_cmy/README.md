@@ -33,7 +33,7 @@
 
 ### 脚本运行环境
 
-本次实验脚本开发环境以及运行环境均基于如下环境
+本次实验脚本开发环境以及运行环境均基于如下环境：
 
 - Python 3.10.4
 - Visual Studio Code 1.69.2 
@@ -223,7 +223,7 @@ CREATE TABLE `ay_user` (
 
 ### API设计
 
-本系统接口包含指定内容详情接口、搜索内容接口、留言提交接口、表单提交接口等，本项目进行漏洞利用涉及的重要接口 包含：
+本系统接口包含指定内容详情接口、搜索内容接口、留言提交接口、表单提交接口等，本项目进行漏洞利用涉及的重要接口包含：
 
 ##### 漏洞二 —— 涉及的重要接口链接
 
@@ -579,7 +579,7 @@ if __name__ == '__main__':
        return "flag{"+flagg[0]+"}"
    ```
 
-主函数
+下面是主函数：
 
 ```python
 import re
@@ -595,7 +595,7 @@ Check 的主要原则是模拟用户正常使用漏洞点的地方。
 
 > 对于漏洞三的 check 需要模拟后台登录，然后再新增文章初进行文章的新增操作，对于文章内容去随机内容，并检查是否新增成功。
 
-该 check 程序主要分为以下几个步骤
+该 check 程序主要分为以下几个步骤：
 
 1. 获取 ssrf token 以及 session id，后续登录需要校验
 
@@ -694,19 +694,19 @@ Check 的主要原则是模拟用户正常使用漏洞点的地方。
            return "err"
    ```
 
-6. 主函数
+下面是主函数
 
-   ```python
-   if __name__ == '__main__':
-       mkey=makeKey()
-       if senExp(mkey)==200:
-           if mkey==getKey():
-               print("Check Up")
-           else:
-               print("Check Down")
-       else:
-           print("Check Down")
-   ```
+```python
+if __name__ == '__main__':
+    mkey=makeKey()
+    if senExp(mkey)==200:
+        if mkey==getKey():
+            print("Check Up")
+        else:
+            print("Check Down")
+    else:
+        print("Check Down")
+```
 
 ![bug3_checkup_422](../img/bug3_checkup_422.png)
 
