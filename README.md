@@ -67,8 +67,38 @@ sudo docker-compose ps
 - [完整结课报告链接](https://github.com/Daytoyecho/Summer-Class-Group12/blob/Members_division_and_reports/Members_division_and_reports/%E6%BC%8F%E6%B4%9E%E6%94%BB%E9%98%B2%E5%AE%9E%E8%AE%AD%E5%AE%8C%E6%95%B4%E6%8A%A5%E5%91%8A.md)
 - [演示视频链接](https://www.bilibili.com/video/BV1ya411M7c1/)
 
-## 小组分工 
+## 附录一 —— 小组分工 
 
 ![division](img/division_github.png)
 
-***备注：所有组员全部都非常积极认真地完成任务，每个人担任的角色都至关重要，每个人的任务量都较重，并且因为各个板块的联系都较为紧密，每个人的实际任务量其实超过上图划定的界限。在此期间，通过频繁开组会沟通迭代，用将近一个月的时间较为圆满地完成了此次实践任务。***
+***备注：所有组员全部都非常积极认真地完成任务，每个人担任的角色都至关重要，每个人的任务量都很重，并且因为各个板块的联系非常紧密，个人的实际任务量远超上图划定的界限。在此期间，通过频繁开组会沟通迭代，用将近一个月的时间较为圆满地完成了此次实践任务。***
+
+## 附录二——分支说明
+
+1. `BuildIt` 分支说明
+
+   - `awdBreak` 文件夹是带有漏洞环境的 docker
+
+   - `build_check` 文件夹内是针对三个漏洞的 check 脚本
+
+   - `build_exp` 文件夹内是 BuildIt 阶段的 exp 脚本
+
+   - `BuildIt.md` 文件是 BuildIt 阶段的技术总结报告
+
+2. `BreakIt` 分支介绍
+
+   - `BreakIt_exp` 文件夹里面是 BreakIt 阶段的 exp 脚本
+
+   - `BreakIt.md` 文件是 BreakIt 阶段的技术总结报告
+
+3. `FixIt` 分支说明
+
+   - `awdFix` 文件夹是漏洞修复之后的 docker
+
+   - `FixIt.md` 是 FixIt 阶段的技术总结报告
+
+4. `Members_division_and_reports` 分支说明
+
+   - 该分支包含 4 名组员的个人实验报告，按照命名要求提交
+
+   - `漏洞攻防实训完整报告.md` 文件是整个小组完整的技术报告
