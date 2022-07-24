@@ -455,8 +455,19 @@ if __name__ == '__main__':
 ### 参考链接
 
 - [PbootCMS 开发手册](https://www.pbootcms.com/docs/218.html)
+
+- [PbootCMS英文站搜索效果页面包屑显示中文的修改方法](https://www.hflmwl.com/news/1557.html)
+
 - [VScode(Visual Studio Code) 在 Liunx 下的安装与配置](https://blog.csdn.net/qq_42519524/article/details/119250935)
-- [正则表达式](https://blog.csdn.net/weixin_40907382/article/details/79654372)
+
+- [PHP 正则表达式](https://blog.csdn.net/weixin_46601374/article/details/122310702)
+
+- [PHP 正则表达式的使用方法](https://www.php.cn/php-weizijiaocheng-406942.html)
+
 - [PbootCMS SQL Injection Description](https://github.com/wowwooo/vnotes/blob/master/PbootCMS%20SQL%20Injection%20Description.md)
+
 - [PbootCMS V1.3.2 SQL injection](https://www.dazhuanlan.com/aaronzhcl/topics/1213609)
+
 - [sql 注入中报错注入函数 extractvalue 和 updatexml 函数的原理及使用](https://blog.csdn.net/weixin_46145442/article/details/110254238)
+
+  
