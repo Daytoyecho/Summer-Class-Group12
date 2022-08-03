@@ -257,15 +257,14 @@ if __name__ == '__main__':
 
 ## 备注：
 
-1. 当运行 `breakit-exp` 脚本时，`python` 版本过低（ `python2`）出现报错：`SyntaxError: Non-ASCII character '\xe6' in file Exp2RCE.py on line 17, but no encoding declared; see http://python.org/dev/peps/pep-0263/ for details` 
+当运行 `breakit-exp` 脚本时，`python` 版本过低（ `python2`）出现报错：`SyntaxError: Non-ASCII character '\xe6' in file xxx.py on line xx, but no encoding declared; see http://python.org/dev/peps/pep-0263/ for details` 
 
-   是 `python2` 编码问题，在脚本添加如下代码即可：
+是 `python2` 编码问题，在脚本添加如下代码即可：
 
-   ```python
-   # -*- coding:UTF-8 -*-
-   import sys
-   reload(sys)
-   sys.setdefaultencoding('utf8')
-   ```
+```python
+# -*- coding:UTF-8 -*-
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
+```
 
-2. 暂不支持 3.9 及以上的 `python` 版本执行脚本。
