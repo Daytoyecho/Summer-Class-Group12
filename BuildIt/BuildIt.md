@@ -711,3 +711,18 @@ if __name__ == '__main__':
 ```
 
 ![bug3_checkup_422](img/bug3_checkup_422.png)
+
+## 备注：
+
+1. 当运行 `Build-exp` 脚本和 `check` 脚本时，`python` 版本过低（ `python2`）时会出现报错：`SyntaxError: Non-ASCII character '\xe6' in file xxx on line xx, but no encoding declared; see http://python.org/dev/peps/pep-0263/ for details` 
+
+   是 `python2` 编码问题，在脚本添加如下代码即可：
+
+   ```python
+   # -*- coding:UTF-8 -*-
+   import sys
+   reload(sys)
+   sys.setdefaultencoding('utf8')
+   ```
+
+2. 暂不支持 3.9 及以上的 `python` 版本执行 `check` 脚本，因为脚本中用到的 `random.seed(time)` 在 `python3.9` 之后的版本中被弃用了。
