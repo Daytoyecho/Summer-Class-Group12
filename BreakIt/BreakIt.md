@@ -59,7 +59,7 @@ if __name__ == '__main__':
 
 4. 由于 PHP 项目中通过会有移除控制字符的函数。在构造 `payload` 过程中将函数名和括号间插入控制字符进行绕过。使用 `chr()` 拼接字符串，其作用是从指定的 ASCII 码返回字符串，从而进行拼接绕过。
 
-   ```ascii码对照表
+   ```
    #system("cat flag.php")的ascii码
    \u0073\u0079\u0073\u0074\u0065\u006d\u0028\u0022\u0063\u0061\u0074\u0020\u0066\u006c\u0061\u0067\u002e\u0070\u0068\u0070\u0022\u0029
    ```
@@ -254,3 +254,18 @@ if __name__ == '__main__':
 ```
 
 ![bug3_break_exp_121](img/bug3_break_exp_121.png)
+
+## 备注：
+
+1. 当运行 `breakit-exp` 脚本时，`python` 版本过低（ `python2`）出现报错：`SyntaxError: Non-ASCII character '\xe6' in file Exp2RCE.py on line 17, but no encoding declared; see http://python.org/dev/peps/pep-0263/ for details` 
+
+   是 `python2` 编码问题，在脚本添加如下代码即可：
+
+   ```python
+   # -*- coding:UTF-8 -*-
+   import sys
+   reload(sys)
+   sys.setdefaultencoding('utf8')
+   ```
+
+2. 暂不支持 3.9 及以上的 `python` 版本执行脚本。
