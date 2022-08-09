@@ -37,7 +37,7 @@
 ## 快速安装与使用方法说明
 
 ```shell
-#注：awdBreak文件夹中是未修复漏洞的容器；awdFix文件夹中是修复漏洞后的容器
+#注：awdBreak 文件夹中是未修复漏洞的容器；awdFix 文件夹中是修复漏洞后的容器
 
 ##执行切换至相应文件夹路径下执行
 sudo docker-compose build 
@@ -58,9 +58,9 @@ sudo docker rmi IMAGE_ID  -f
 ##查看是否正常启动
 sudo docker-compose ps
 
-##成功后本机访问127.0.0.1即可出现系统界面。
+##成功后本机访问 127.0.0.1 即可出现系统界面。
 
-###本机访问127.0.0.1成功后，使用VScode执行awdScript文件夹中的exp脚本和check脚本进行测试即可。(python)
+###本机访问 127.0.0.1 成功后，使用 VScode 执行对应的的 exp 脚本和 check 脚本进行测试即可。(python)
 ```
 
 ## 课程结题报告与系统功能操作视频演示地址
