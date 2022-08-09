@@ -60,7 +60,7 @@ sudo docker-compose ps
 
 ##成功后本机访问127.0.0.1即可出现系统界面。
 
-###本机访问127.0.0.1成功后，使用VScode执行awdScript文件夹中的exp脚本和check脚本进行测试即可。(python)
+###本机访问127.0.0.1成功后，使用VScode执行对应的的 exp 脚本和 check 脚本进行测试即可。(python)
 ```
 
 ## 课程结题报告与系统功能操作视频演示地址
