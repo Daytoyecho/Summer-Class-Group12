@@ -30,6 +30,7 @@
 *  后端基于 `PHP` 的 `Pboot` 框架进行编写，该框架采用 `MVC` 的思想，更符合当前的开发趋势，更利于项目的后期维护。
 *  整个项目分为开发环境和实际运行环境；开发环境为本机真实环境。实际运行环境基于 Docker-Compose。该环境的基础镜像来自 `s1riu5/lamp:7.2` 。利用 `docker-entrypoint-initdb.d/` 直接导入数据库。
 *  考虑到实际题目运行场景，可能要采取动态 `flag` 的模式，所以在 Docker 启动时添加命令 `RUN echo "flag{fffllllaaggggg}" > /flag` 以方便实际场景应用。
+*  三个漏洞对应设置三个 `flag` ，详细内容见 [完整结课报告](https://github.com/Daytoyecho/Summer-Class-Group12/blob/Members_division_and_reports/Members_division_and_reports/%E6%BC%8F%E6%B4%9E%E6%94%BB%E9%98%B2%E5%AE%9E%E8%AE%AD%E5%AE%8C%E6%95%B4%E6%8A%A5%E5%91%8A.md) 。
 *  为了更好的管理和配置 `Docker` 容器，同时考虑到与数据库解耦，本次采用 `Docker-Compose` 的方式来管理容器。
 *  本项目启动方式非常简单，只需要在项目路径下使用 `docker-compse up -d` 即可启动项目环境，无需其他操作。
 
@@ -71,7 +72,7 @@ sudo docker-compose ps
 
 ![division](img/division_github.png)
 
-***备注：所有组员全部都非常积极认真地完成任务，每个人担任的角色都至关重要，每个人的任务量都很重，并且因为各个板块的联系非常紧密，个人的实际任务量远超上图划定的界限。在此期间，通过频繁开组会沟通迭代，用将近一个月的时间较为圆满地完成了此次实践任务。***
+***备注：所有组员全部都非常积极认真地完成任务，每个人担任的角色都至关重要，每个人的任务量都很重，并且因为各个板块的联系非常紧密，个人的实际任务量远超上图划定的界限。在此期间，通过频繁开组会沟通迭代，用将近一个月的时间较为圆满地完成了此次实践任务。详细的组会记录在畅课平台提交。***
 
 ## 附录二——分支说明
 
@@ -92,11 +93,10 @@ sudo docker-compose ps
    - `BreakIt.md` 文件是 BreakIt 阶段的技术总结报告
 
 3. `FixIt` 分支说明
-
    - `awdFix` 文件夹是漏洞修复之后的 docker
-
+   
    - `FixIt.md` 是 FixIt 阶段的技术总结报告
-
+   
 4. `Members_division_and_reports` 分支说明
 
    - 该分支包含 4 名组员的个人实验报告，按照命名要求提交
